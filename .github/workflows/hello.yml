@@ -1,15 +1,19 @@
-name: Hello World Workflow
-
+name: ci cd pipeline with kubernetes
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+      - dev
 
 jobs:
-  hello:
+  hello-world:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Print Hello World
-        run: echo "Hello World"
+      - name: checkout the code
+        uses: actions/checkout@v4
+
+      - name: run the hello world
+        run: echo "Hello world"
+
+      - name: run the date command
+        run: date
