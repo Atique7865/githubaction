@@ -1,4 +1,4 @@
-name: ci cd pipeline with kubernetes
+name: first ci cd pipeline
 on:
   push:
     branches:
@@ -6,14 +6,24 @@ on:
       - dev
 
 jobs:
-  hello-world:
+  code:
     runs-on: ubuntu-latest
     steps:
-      - name: checkout the code
+      - name: clone the code
         uses: actions/checkout@v4
 
+    
       - name: run the hello world
-        run: echo "Hello world"
+        run: echo "Hello World"
 
-      - name: run the date command
-        run: date
+
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build the docker image
+        run: echo "docker image is ok"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy the docker image
+        run : echo "successfully deploy the docker image"
