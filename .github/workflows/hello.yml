@@ -1,4 +1,5 @@
 name: first ci cd pipeline
+
 on:
   push:
     branches:
@@ -12,18 +13,19 @@ jobs:
       - name: clone the code
         uses: actions/checkout@v4
 
-    
       - name: run the hello world
         run: echo "Hello World"
 
-
   test:
+    needs: code
     runs-on: ubuntu-latest
     steps:
       - name: build the docker image
         run: echo "docker image is ok"
+
   deploy:
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - name: deploy the docker image
-        run : echo "successfully deploy the docker image"
+        run: echo "successfully deploy the docker image"
